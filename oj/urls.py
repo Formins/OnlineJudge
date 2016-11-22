@@ -142,4 +142,9 @@ urlpatterns = [
     url(r'^rank/(?P<page>\d+)/$', "account.views.user_rank_page", name="user_rank_page"),
     url(r'^rank/$', "account.views.user_rank_page", name="user_rank_page"),
     url(r'^api/avatar/upload/', AvatarUploadAPIView.as_view(), name="avatar_upload_api"),
+
+    url(r'forum/$', "forum.views.article_list_page", name="article_list_page"),
+    url(r'^forum/article/(?P<article_id>\d+)/$', "forum.views.article", name='article'),
+    url(r'^forum/addarticle/$', "forum.views.create_article", name="create_article"),
+
 ]
