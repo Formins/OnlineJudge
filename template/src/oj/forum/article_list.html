@@ -8,19 +8,14 @@
         <div class="row">
             <!-- Center Column -->
             <div class="col-md-9 col-lg-9">
-
+                <a href="/forum/addarticle">新建帖子</a>
                 <!-- Articles -->
                 {% for article in article_list %}
                     <div class="row">
                         <article class="col-xs-12">
-                            <h2><a id="article_title" href="/forum/article/{{ article.id }}">{{ article.title }}</a></h2>
+                            <h2><a id="article_title" href="/forum/article/{{ article.id }}">{{ article.title }}</a>
+                            </h2>
                             <p>{{ article.content|truncatechars_html:80|safe }}</p>
-                            <p>
-                                <button class="btn btn-default">Read More</button>
-                            </p>
-                            <p class="pull-right"><span class="label label-default">{{ article.category }}</span> <span
-                                    class="label label-default">tag</span> <span class="label label-default">post</span>
-                            </p>
                             <ul class="list-inline">
                                 <li><a href="#">{{ article.pub_date|date:"j M" }}</a></li>
                                 <li><a href="#"><span
@@ -34,7 +29,6 @@
                 {% endfor %}
 
 
-                <a href="/forum/addarticle">新建帖子</a>
             </div><!--/Center Column-->
 
 

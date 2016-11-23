@@ -16,8 +16,6 @@ class Category(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=256)
-    password = models.CharField('password', max_length=256)
-    register_date = models.DateTimeField(auto_now_add=True, editable=True)
 
     def __str__(self):
         return self.name
@@ -33,8 +31,8 @@ class Article(models.Model):
     objects = ArticleManager()
     title = models.CharField(max_length=100)
     category = models.ForeignKey(Category, blank=True, null=True)
-    author = models.ForeignKey(Author, null=True)
-    user = models.ManyToManyField(User, blank=True)
+    author = models.ForeignKey(User, null=True)
+    # user = models.ManyToManyField(User, blank=True)
     pub_date = models.DateTimeField(auto_now_add=True, editable=True)
     content = models.TextField(blank=True, null=True)
     poll_num = models.IntegerField(default=0)
@@ -47,12 +45,15 @@ class Article(models.Model):
 class Comment(models.Model):
     user = models.ForeignKey(User, null=True)
     article = models.ForeignKey(Article, null=True)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True)
     poll_num = models.IntegerField(default=0)
 
+    class Meta:
+        ordering = ['pub_date']
+
     def __str__(self):
-        return self.content
+        return "%s's Comment" % self.user.username
 
 
 class Poll(models.Model):

@@ -11,7 +11,8 @@
             <div class="row">
                 <article class="col-xs-12">
                     <h2>{{ article.title }}</h2>
-                    <p class="pull-right"><span class="label label-default">{{ article.column }}</span> <span class="label label-default">{{ article.pub_date | date:"j M" }}</span> <span class="label label-default">{{ article.author }}</span></p>
+                    <p>author: {{ article.author_id }}</p>
+                    <p class="pull-right"><span class="label label-default">{{ article.pub_date | date:"j M" }}</span> <span class="label label-default">{{ article.author }}</span></p>
                     <p><hr></p>
                     <p>{{ content | safe }}</p>
                     <p></p>
@@ -43,11 +44,12 @@
             {% endfor %}
             <div class="row">
                 <article class="col-xs-12">
-                    <h4>Sharing you comment:</h4>
-                    <form action="/{{ article.id }}/comment/" method="post">
+                    <h4>添加一条新回复:</h4>
+                    <form action="." method="post">
                         {% csrf_token %}
-                        {{ commentform.as_p }}
-                        <input class="btn btn-default" type="submit" value="Submit" />
+                        <!-- 找不到form，待解决 -->
+                        {{ form.as_p }}
+                        <button type="submit">发表回复</button>
                     </form>
                 </article>
             </div>

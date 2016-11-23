@@ -146,5 +146,5 @@ urlpatterns = [
     url(r'forum/$', "forum.views.article_list_page", name="article_list_page"),
     url(r'^forum/article/(?P<article_id>\d+)/$', "forum.views.article", name='article'),
     url(r'^forum/addarticle/$', "forum.views.create_article", name="create_article"),
-
+    url(r'^forum/article/(?P<article_id>\d+)/comment/$', "forum.views.post_comment", name='comment'),
 ]

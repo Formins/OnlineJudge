@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from forum.models import Article
+from forum.models import Article, Author, Comment
 
 error_messages = {
     'title': {
@@ -15,11 +15,14 @@ error_messages = {
 
 
 class CreateArticleForm(forms.ModelForm):
+
     class Meta:
         model = Article  # 表单对应的model
         fields = ['title', 'content']
 
 
-class ReplyForm(forms.Form):
-    content = forms.CharField(widget=forms.Textarea,
-                              error_messages=error_messages.get('content'))
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['content']
